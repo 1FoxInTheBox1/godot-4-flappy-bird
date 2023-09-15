@@ -12,6 +12,7 @@ func _ready():
 
 func _on_pipe_spawn_timer_timeout():
 	var instance = pipeScene.instantiate()
+	$Player.hit.connect(instance.game_over.bind())
 	instance.set_speed(speed)
 	instance.position.y = 200
 	instance.position.x += 400
@@ -21,3 +22,8 @@ func game_over():
 	print("L bozo")
 	$PipeSpawnTimer.stop()
 	
+
+
+func _on_player_yippee():
+	print(score)
+	score += 1

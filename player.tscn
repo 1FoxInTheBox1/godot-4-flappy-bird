@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwtpqrocek6l2"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_7a4qh"]
+[ext_resource type="Texture2D" uid="uid://co0fpnjfos7ye" path="res://sprites/yellowbird-downflap.png" id="2_0r77t"]
+[ext_resource type="Texture2D" uid="uid://ce3pxbu5oq1y2" path="res://sprites/yellowbird-midflap.png" id="3_f43mj"]
+[ext_resource type="Texture2D" uid="uid://ccnwsjcey8ilp" path="res://sprites/yellowbird-upflap.png" id="4_e7abj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i87wr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_e7abj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f43mj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0r77t")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71ygr"]
+size = Vector2(34, 24)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_7a4qh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i87wr")
+animation = &"flap"
+frame = 1
+frame_progress = 0.56719
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_71ygr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

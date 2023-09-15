@@ -1,6 +1,7 @@
 extends Node2D
 
 signal hit
+signal yippee
 
 var grav_scale = .2
 var y_velocity = 0
@@ -25,8 +26,12 @@ func _process(delta):
 		y_velocity = jump_height
 
 func _on_area_entered(area):
-	alive = false
-	hit.emit()
+	if area.is_in_group("Death"):
+		alive = false
+		hit.emit()
+		$CollisionShape2D.set_deferred("disabled", true)
+	else:
+		yippee.emit()
 
 
 func _on_animated_sprite_2d_animation_looped():

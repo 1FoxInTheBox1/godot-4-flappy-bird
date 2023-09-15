@@ -16,3 +16,7 @@ func set_speed(new_speed):
 
 func _on_despawn_timer_timeout():
 	queue_free()
+
+func game_over():
+	$DespawnTimer.stop()
+	speed = 0
