@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://kaa6ospbopxn"]
+
+[ext_resource type="Script" path="res://pipes.gd" id="1_040os"]
+[ext_resource type="Texture2D" uid="uid://dm20u26x4ftym" path="res://sprites/pipe-red.png" id="1_wo5y4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_io3qf"]
+size = Vector2(51, 319)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ndy"]
+size = Vector2(21, 192)
+
+[node name="Pipes" type="Node2D"]
+script = ExtResource("1_040os")
+
+[node name="Top Pipe" type="Area2D" parent="."]
+position = Vector2(0, -240)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Pipe"]
+shape = SubResource("RectangleShape2D_io3qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Top Pipe"]
+texture = ExtResource("1_wo5y4")
+
+[node name="Bottom Pipe" type="Area2D" parent="."]
+position = Vector2(0, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Pipe"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_io3qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom Pipe"]
+texture = ExtResource("1_wo5y4")
+
+[node name="Safe Zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Safe Zone"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_d2ndy")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
