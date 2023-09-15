@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7q8q38iho7av"]
+
+[ext_resource type="Script" path="res://Ground.gd" id="1_4u2yh"]
+[ext_resource type="Texture2D" uid="uid://cbhnvt6h47lel" path="res://sprites/base.png" id="2_fu5i1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxstm"]
+size = Vector2(336, 112)
+
+[node name="Ground" type="Area2D" groups=["Death"]]
+script = ExtResource("1_4u2yh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
+texture_repeat = 2
+position = Vector2(144, 456)
+texture = ExtResource("2_fu5i1")
+region_enabled = true
+region_rect = Rect2(0, 0, 336, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(144, 456)
+shape = SubResource("RectangleShape2D_nxstm")

@@ -9,6 +9,7 @@ func get_speed():
 
 func _ready():
 	$PipeSpawnTimer.start()
+	$Ground.speed = speed
 
 func _on_pipe_spawn_timer_timeout():
 	var instance = pipeScene.instantiate()
@@ -19,11 +20,9 @@ func _on_pipe_spawn_timer_timeout():
 	add_child(instance)
 
 func game_over():
-	print("L bozo")
 	$PipeSpawnTimer.stop()
 	
 
 
 func _on_player_yippee():
-	print(score)
 	score += 1
