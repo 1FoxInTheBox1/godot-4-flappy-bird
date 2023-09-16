@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://dybsklhd48mhh"]
+[gd_scene load_steps=10 format=3 uid="uid://dybsklhd48mhh"]
 
 [ext_resource type="PackedScene" uid="uid://dwtpqrocek6l2" path="res://player.tscn" id="1_6c5t1"]
 [ext_resource type="Script" path="res://main.gd" id="1_hfth3"]
 [ext_resource type="Texture2D" uid="uid://dhif5war2mo08" path="res://sprites/background-day.png" id="3_bdiqn"]
 [ext_resource type="PackedScene" uid="uid://c7q8q38iho7av" path="res://ground.tscn" id="5_d1o0x"]
 [ext_resource type="PackedScene" uid="uid://b4qfssrmnd7p4" path="res://scoreboard.tscn" id="5_saig6"]
+[ext_resource type="Texture2D" uid="uid://frkqh7fboaws" path="res://sprites/gameover.png" id="6_0d4lr"]
+[ext_resource type="Texture2D" uid="uid://c5ix4xn47e7l6" path="res://sprites/message.png" id="7_g5231"]
+[ext_resource type="Script" path="res://GameOver.gd" id="7_sbxly"]
+[ext_resource type="Script" path="res://StartGame.gd" id="9_u7gru"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_hfth3")
 
 [node name="Player" parent="." instance=ExtResource("1_6c5t1")]
-position = Vector2(130, 204)
+position = Vector2(144, 248)
 
 [node name="PipeSpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 
 [node name="BG" type="Sprite2D" parent="."]
 z_index = -1
@@ -25,6 +29,28 @@ position = Vector2(144, 48)
 
 [node name="Ground" parent="." instance=ExtResource("5_d1o0x")]
 
+[node name="GameOver" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(144, 200)
+texture = ExtResource("6_0d4lr")
+script = ExtResource("7_sbxly")
+
+[node name="StartGame" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(144, 200)
+texture = ExtResource("7_g5231")
+script = ExtResource("9_u7gru")
+
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="Ground" method="_on_player_hit"]
+[connection signal="hit" from="Player" to="GameOver" method="_on_player_hit"]
 [connection signal="yippee" from="Player" to="." method="_on_player_yippee"]
 [connection signal="timeout" from="PipeSpawnTimer" to="." method="_on_pipe_spawn_timer_timeout"]
+[connection signal="restart" from="GameOver" to="." method="restart"]
+[connection signal="restart" from="GameOver" to="Player" method="restart"]
+[connection signal="restart" from="GameOver" to="Scoreboard" method="restart"]
+[connection signal="restart" from="GameOver" to="Ground" method="restart"]
+[connection signal="restart" from="GameOver" to="StartGame" method="restart"]
+[connection signal="start_game" from="StartGame" to="." method="start_game"]
+[connection signal="start_game" from="StartGame" to="Player" method="start_game"]
+[connection signal="start_game" from="StartGame" to="Scoreboard" method="start_game"]

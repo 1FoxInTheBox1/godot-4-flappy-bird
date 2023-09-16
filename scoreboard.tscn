@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4qfssrmnd7p4"]
+[gd_scene load_steps=14 format=3 uid="uid://b4qfssrmnd7p4"]
 
+[ext_resource type="Script" path="res://scoreboard.gd" id="1_o3ja4"]
 [ext_resource type="Texture2D" uid="uid://droc2bpnl7nq8" path="res://sprites/0.png" id="1_sh4pi"]
 [ext_resource type="Texture2D" uid="uid://ral01qv5x3q" path="res://sprites/1.png" id="2_yu8qi"]
 [ext_resource type="Texture2D" uid="uid://bvyaiho00sro6" path="res://sprites/2.png" id="3_t31jh"]
@@ -88,6 +89,7 @@ animations = [{
 }]
 
 [node name="Scoreboard" type="Node2D"]
+script = ExtResource("1_o3ja4")
 
 [node name="Ones" type="AnimatedSprite2D" parent="."]
 z_index = 5

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr4f8cnrs1erl"]
+
+[ext_resource type="Texture2D" uid="uid://cbhnvt6h47lel" path="res://sprites/base.png" id="1_1p32y"]
+[ext_resource type="Script" path="res://GroundSection.gd" id="2_a5ynh"]
+
+[node name="GroundSection" type="Sprite2D"]
+top_level = true
+texture_repeat = 2
+position = Vector2(144, 456)
+texture = ExtResource("1_1p32y")
+region_enabled = true
+region_rect = Rect2(0, 0, 336, 112)
+script = ExtResource("2_a5ynh")
