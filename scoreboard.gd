@@ -21,4 +21,7 @@ func start_game():
 	
 func restart():
 	hide()
+	first_digit = -1
+	second_digit = 0
+	update_score()
 	
